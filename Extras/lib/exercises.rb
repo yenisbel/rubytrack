@@ -119,3 +119,32 @@ class Array
     accumulator
   end
 end
+
+
+class Sequence
+  attr_accessor :values, :size
+
+  def initialize(array)
+    @values = array
+    @size = array.length
+  end
+
+
+  # Sorted array and find where insert a new ele, that array stay sorted(this case mayor a menor)
+  def sort
+    result = values.dup
+
+    values.each_with_index do |item, i|
+      j = i
+      while j > 0 && result[j - 1] < item   
+        result[j] = result[j - 1]
+        j -= 1
+      end
+      result[j] = item
+    end
+    result
+  end
+end
+
+seq = Sequence.new([5,7,2,6,1])
+seq.sort
